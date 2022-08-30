@@ -33,8 +33,8 @@ class ContaController {
                 this.repositorioContas.adicionar(contaBonificada);
                 this.inserirContaNoHTML(contaBonificada);
                 break;
-            case 'poupanca': 
-                const poupanca = new Poupanca(elementoNumero.value, Number(elementoSaldo.value), Date(elementoDataAniversario.value));
+            case 'poupanca':                 
+                const poupanca = new Poupanca(elementoNumero.value, Number(elementoSaldo.value), elementoDataAniversario.value);
                 this.repositorioContas.adicionar(poupanca);
                 this.inserirPoupancaNoHTML(poupanca);
                 break;
@@ -59,12 +59,12 @@ class ContaController {
 
     inserirPoupancaNoHTML(poupanca) {
         const elementoPoup = document.createElement('p');
-        elementoPoup.textContent = 'Poupança ' + poupanca.numero + ': ' + poupanca.saldo + ' Data de Aniversário: ' + poupanca.dataAniversario.toString();
+        elementoPoup.textContent = 'Poupança ' + poupanca.numero + ': ' + poupanca.saldo + ' Data de Aniversário: ' + poupanca.dataAniversario;
         const botaoApagar2= document.createElement('button');
         botaoApagar2.textContent = 'X';
 
         botaoApagar2.addEventListener('click', (event) => {
-            this.repositorioContas.remover(conta.numero);
+            this.repositorioContas.remover(poupanca.numero);
             event.target.parentElement.remove();
         });
 
